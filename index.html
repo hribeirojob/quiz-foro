@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Saúde - Anabolizantes e GH</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Tela Inicial -->
+        <div id="start-screen" class="screen active">
+            <div class="container">
+                <h1>Quiz Saúde</h1>
+                <h2>Anabolizantes e Hormônio GH</h2>
+                <div class="buttons">
+                    <button id="start-btn" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Iniciar
+                    </button>
+                    <button id="ranking-btn" class="btn btn-secondary">
+                        <i class="fas fa-trophy"></i> Ranking
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Nome -->
+        <div id="name-screen" class="screen">
+            <div class="container">
+                <h2>Digite seu nome ou nickname</h2>
+                <div class="input-group">
+                    <input type="text" id="player-name" placeholder="Seu nome aqui..." maxlength="20">
+                </div>
+                <div id="name-error" class="error-message"></div>
+                <button id="name-submit" class="btn btn-primary">OK</button>
+                <button id="name-back" class="btn btn-tertiary">Voltar</button>
+            </div>
+        </div>
+
+        <!-- Tela de Confirmação de Nome Existente -->
+        <div id="name-confirm-screen" class="screen">
+            <div class="container">
+                <h2>Nome já existe!</h2>
+                <p>Este nome já existe no ranking. Se continuar, sua pontuação anterior será substituída.</p>
+                <div class="buttons">
+                    <button id="confirm-yes" class="btn btn-primary">Sim, continuar</button>
+                    <button id="confirm-no" class="btn btn-secondary">Não, voltar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela do Quiz -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="score">Pontuação: <span id="current-score">0</span></div>
+                <div class="timer">Tempo: <span id="timer">00:00</span></div>
+                <div class="menu-icon">
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+            </div>
+            <div id="menu-popup" class="popup">
+                <div class="popup-content">
+                    <button id="restart-btn" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                    <button id="quit-btn" class="btn btn-danger">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="question-counter">Pergunta <span id="current-question">1</span> de <span id="total-questions">5</span></div>
+                <div class="question-container">
+                    <h2 id="question-text">Texto da pergunta aqui...</h2>
+                </div>
+                <div class="answers-container">
+                    <div class="answer" data-option="A">
+                        <span class="option">A</span>
+                        <span class="answer-text">Resposta A</span>
+                    </div>
+                    <div class="answer" data-option="B">
+                        <span class="option">B</span>
+                        <span class="answer-text">Resposta B</span>
+                    </div>
+                    <div class="answer" data-option="C">
+                        <span class="option">C</span>
+                        <span class="answer-text">Resposta C</span>
+                    </div>
+                    <div class="answer" data-option="D">
+                        <span class="option">D</span>
+                        <span class="answer-text">Resposta D</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Resultado -->
+        <div id="result-screen" class="screen">
+            <div class="container">
+                <h2>Resultado</h2>
+                <div class="result-details">
+                    <div class="result-item">
+                        <span class="result-label">Jogador:</span>
+                        <span id="result-name" class="result-value">Nome</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Pontuação:</span>
+                        <span id="result-score" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Tempo:</span>
+                        <span id="result-time" class="result-value">00:00</span>
+                    </div>
+                </div>
+                <button id="result-ok" class="btn btn-primary">Ver Ranking</button>
+            </div>
+        </div>
+
+        <!-- Tela de Ranking -->
+        <div id="ranking-screen" class="screen">
+            <div class="container">
+                <h2>Ranking</h2>
+                <div class="ranking-container">
+                    <table id="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>Pos.</th>
+                                <th>Nome</th>
+                                <th>Pontuação</th>
+                                <th>Tempo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking-body">
+                            <!-- Ranking será preenchido via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <button id="ranking-back" class="btn btn-primary">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/firebase-test.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
